@@ -36,12 +36,24 @@ tar son:
 """
 
 import subprocess
+import os
+from contextlib import contextmanager
+
+
+# Función para cambiar temporalmente de directorio
+@contextmanager
+def cambia_directorio(dir_objetivo):
+    dir_inicial = os.getcwd()
+    os.chdir(dir_objetivo)
+    try:
+        yield
+    finally:
+        os.chdir(dir_inicial)
+
 
 class Simulador():
     """
-        Clase de objeto simulador.
-        
-        Contiene todas las funciones de la librería
+        Clase de objeto Simulador.
         
     """
     
@@ -57,11 +69,17 @@ class Simulador():
           debería crear las variables necesarios para la bitácora, el paso
           de integración, el periodo de muestreo y el número de entradas y
           salidas
-        
+            
         """
         
+        # Obtiene directorio raiz de la biblioteca
+        dir_raiz = os.path.dirname(os.path.abspath(__file__))
+        
         # Crea proceso de simulación
-        self.prSIM = subprocess.Popen(['Simulador\Simulador.exe'], text=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        with cambia_directorio(dir_raiz):
+            print(os.getcwd())
+            self.prSIM = subprocess.Popen(['Simulador\Simulador.exe'], text=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        print(os.getcwd())
         self.prSIM_ent = self.prSIM.stdin
         self.prSIM_sal = self.prSIM.stdout
         
@@ -102,7 +120,7 @@ class Simulador():
 
         """
         # Actualiza registro en la bitácora (observacion actual, entrada actual)
-        self.actualiza_bitacora(entrada)
+        self._actualiza_bitacora(entrada)
         
         # Avanza kh pasos de integración
         for i in range(self._kh):
@@ -155,7 +173,7 @@ class Simulador():
         self.prSIM.terminate()
     
     
-    def actualiza_bitacora(self, entrada:list):
+    def _actualiza_bitacora(self, entrada:list):
         """
         Función para actualizar bitácora de simulación.
         
@@ -169,11 +187,15 @@ class Simulador():
             (Debe coincidir con la configuración de la simulación.)
 
         """
-        self.bitacora['Observacion']['ia'] = self._obs_sim[0]
-        self.bitacora['Observacion']['w'] = self._obs_sim[1]
-        self.bitacora['Entradas']['Vt'] = self.entrada[0]
-        self.bitacora['Entradas']['Tlc'] = self.entrada[1]
-        self.bitacora['Entradas']['Tlw'] = self.entrada[2]
+        self.bitacora['Observacion']['ia'].append(self._obs_sim[0]) 
+        self.bitacora['Observacion']['w'].append(self._obs_sim[1])
+        self.bitacora['Entradas']['Vt'].append(entrada[0])
+        self.bitacora['Entradas']['Tlc'].append(entrada[1])
+        self.bitacora['Entradas']['Tlw'].append(entrada[2])
+        if(len(self.bitacora['Tiempo']) == 0):
+            self.bitacora['Tiempo'].append(0)
+        else:
+            self.bitacora['Tiempo'].append(self.bitacora['Tiempo'][-1] + self._h*self._kh)
         
 
         
