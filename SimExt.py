@@ -77,9 +77,7 @@ class Simulador():
         
         # Crea proceso de simulación
         with cambia_directorio(dir_raiz):
-            print(os.getcwd())
             self.prSIM = subprocess.Popen(['Simulador\Simulador.exe'], text=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-        print(os.getcwd())
         self.prSIM_ent = self.prSIM.stdin
         self.prSIM_sal = self.prSIM.stdout
         
