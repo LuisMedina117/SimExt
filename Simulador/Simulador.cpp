@@ -35,23 +35,23 @@ int main(){
     // Variable de entradas
     struct Entradas ent;
     
-    // Crea modelo y configura parámetros: J, B, K1, K2
-    // 5HP, 240V, 1750rpm, 300Vfield
-    // Ra0.6, L0.012, Rf240, Lf120, Laf0.984, J1.0, B0.05
-    // K1=K2=ifLaf=(300/240)*0.984=1.23
+    // Crea modelo y configura parámetros: 
+    // Pn=10HP, n=1750rpm Vt=240V, Vf=300V, Tn=40Nm
+    // Ra1.086, L0.01216, Rf180, Lf71.47, Laf0.6458, J0.04251, B0.003406
+    // K1=K2=ifLaf=(300/180)*0.6458=1.0733
     struct Parametros params = {
-        1.2,    // R (mayor R para más variación de velocidad con carga)
-        0.012,  // L
-        1.0,    // J
-        0.05,   // B
-        1.23,   // K1
-        1.23    // K2
+        1.086,      // R (mayor R para más variación de velocidad con carga)
+        0.01216,    // L
+        0.04251,    // J
+        0.003406,   // B
+        1.07633,   // K1
+        1.07633    // K2
     };
     Motor_Derivacion motor(params);
 
     // Configura paso y método de integración
-    motor.Configuracion(0.01, EULER_PROG);  // 10ms, Euler progresivo
-    //motor.Configuracion(0.01, RUNGEKUTTA4);  // 10ms, Runge-Kutta
+    motor.Configuracion(0.001, EULER_PROG);  // 1ms, Euler progresivo
+    //motor.Configuracion(0.001, RUNGEKUTTA4);  // 1ms, Runge-Kutta
 
     // Espera entrada y ejecuta paso de integración
     while(true){

@@ -95,7 +95,7 @@ class Simulador():
         self._nSal = 2
         
         # Paso de integración
-        self._h = 0.01
+        self._h = 0.001
         # Tiempo de muestreo (número de pasos de integración)
         self._kh = 1
         
