@@ -40,7 +40,7 @@ int main(){
     // Ra0.6, L0.012, Rf240, Lf120, Laf0.984, J1.0, B0.05
     // K1=K2=ifLaf=(300/240)*0.984=1.23
     struct Parametros params = {
-        0.6,    // R
+        1.2,    // R (mayor R para más variación de velocidad con carga)
         0.012,  // L
         1.0,    // J
         0.05,   // B
