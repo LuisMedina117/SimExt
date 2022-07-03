@@ -27,6 +27,7 @@ SOFTWARE.
  ########################################################################### */
 
 #include "../Modelos/MotorCD.h"
+#include "nlohmann/json.hpp"
 #include <iostream>
 using namespace std;
 
