@@ -97,7 +97,7 @@ class Simulador():
         # Paso de integración
         self._h = 0.001
         # Tiempo de muestreo (número de pasos de integración)
-        self._kh = 1
+        self._kh = 4
         
         
     def avanza(self, entrada:list):

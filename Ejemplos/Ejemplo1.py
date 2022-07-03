@@ -24,8 +24,8 @@ simulador = SimExt()
 class control_Velocidad():
     def __init__(self):
         self.Kp = 2
-        self.Ki = 10
-        self.Kd = 0.5
+        self.Ki = 40
+        self.Kd = 0.125
         self.x1 = 0
         self.x2 = 0
         self.h = 0.01
@@ -44,7 +44,7 @@ class control_Velocidad():
 #%% Simulación
 T = 2
 h = 0.001
-kh = 1
+kh = 4
 
 # Objeto del control de velocidad
 control = control_Velocidad()
@@ -55,7 +55,7 @@ observacion = simulador.inicio()
 # Ciclo de simulación
 for i in range(int(T/(h*kh))):
     # Avanza en la simulación. Entrada: [Vt, Tlc, Tlw]
-    if i < T/2/h:
+    if i < T/2/(h*kh):
         # observacion = simulador.avanza([240,0,0])
         observacion = simulador.avanza([control.accion(1750*2*np.pi/60,observacion[1]),0,0])
     else:
