@@ -26,7 +26,7 @@ SOFTWARE.
  * Programa principal - SimExt
  ########################################################################### */
 
-#include "../Modelos/MotorCD.h"
+#include "Modelos/MotorCD.h"
 #include "nlohmann/json.hpp"
 #include <iostream>
 using namespace std;

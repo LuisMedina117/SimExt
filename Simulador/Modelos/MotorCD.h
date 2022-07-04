@@ -26,7 +26,34 @@ SOFTWARE.
  * Biblioteca del modelo de motor de CD - SimExt
  ########################################################################### */
 
-#include "MotorCD.h"
+#ifndef MOTORCD_H
+#define MOTORCD_H
+
+// Estructura de parámetros del motor
+struct Parametros{
+    double R;       // Resistencia del devanado de armadura [Ohm]
+    double L;       // Inductancia del devanado de armadura [Henry]
+    double J;       // Momento de inercia del rotor [kg·m^2]
+    double B;       // Coeficiente de fricción [kg·m^2/s]
+    double K1;      // Constante de par-corriente [Nm/A]
+    double K2;      // Constante de velocidad-fem [V/(rad/s)]
+};
+
+// Estructura de variables de estado del motor
+struct Estado{
+    double ia;      // Corriente del devanado de armadura [A]
+    double w;       // Velocidad angular del rotor [rad/s]
+};
+
+// Estructura de variables de entrada del motor
+struct Entradas{
+    double Vt;      // Tensión aplicada [V]
+    double Tlc;     // Par de carga constante [Nm]
+    double Tlw;     // Para de carga proporcional a velocidad [Nms]
+};
+
+// Método de integración
+enum Metodo {EULER_PROG, TRAPEZOIDAL, RUNGEKUTTA4};
 
 // Clase del motor de CD en derivación
 class Motor_Derivacion{
@@ -49,7 +76,7 @@ class Motor_Derivacion{
         void RungeKutta4(struct Entradas);
 
 };
-
+/*
 Motor_Derivacion::Motor_Derivacion(struct Parametros Prms){
     // Constructor: define parámetros del motor
     PARAM = Prms;
@@ -126,4 +153,6 @@ void Motor_Derivacion::RungeKutta4(struct Entradas ent){
 void Motor_Derivacion::Trapezoidal(struct Entradas ent){
     // Ejecuta método de integración Regla trapezoidal
     ;
-}
+}*/
+
+#endif
