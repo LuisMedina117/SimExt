@@ -35,6 +35,8 @@ using namespace std;
 int main(){
     // Variable de entradas
     struct Entradas ent;
+
+    // Parse json with ifstream https://github.com/nlohmann/json
     
     // Crea modelo y configura parámetros: 
     // Pn=10HP, n=1750rpm Vt=240V, Vf=300V, Tn=40Nm

@@ -1,0 +1,34 @@
+[
+    {
+        "tipo": "MotorCD",
+        "id": "Motor_CD_1",
+        "Config": {
+            "Ra":   1.086,
+            "L":    0.01216,
+            "J":    0.04251,
+            "B":    0.003406,
+            "K1":   1.07633,
+            "K2":   1.07633,
+            "metodo":   "EulerProgresivo"
+        }
+    },
+    {
+        "tipo": "Config_Sim",
+        "Config":{
+            "h":    0.001,
+            "kh":   4,
+            "metodo":   "EulerProgresivo",
+            "bitacora": [
+                {
+                    "id": "Motor_CD_1",
+                    "vars": [
+                        "ia", 
+                        "w",
+                        "Vt",
+                        "Tlc"
+                    ]
+                }
+            ]
+        }
+    }
+]
