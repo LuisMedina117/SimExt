@@ -1,0 +1,25 @@
+{
+    "MotorCD": {
+        "Motor_Derivacion":[
+            "ia",
+            "w",
+            "Vt",
+            "Tlc",
+            "Tlw"
+        ],
+        "Ejemplo_otro_modelo":[
+            "variable_estado_1",
+            "variable_estado_2",
+            "variable_entrada_1",
+            "variable_entrada_2"
+        ]
+    },
+    "Ejemplo_de_modulo": {
+        "Ejemplo_de_modelo":[
+            "variable_estado_1",
+            "variable_estado_2",
+            "variable_entrada_1",
+            "variable_entrada_2"
+        ]
+    }
+}

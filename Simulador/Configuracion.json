@@ -1,7 +1,8 @@
 [
     {
-        "tipo": "MotorCD",
-        "id": "Motor_CD_1",
+        "Modulo": "MotorCD",
+        "Clase": "Motor_Derivacion",
+        "ID": "Motor_1",
         "Config": {
             "Ra":   1.086,
             "L":    0.01216,
@@ -13,14 +14,14 @@
         }
     },
     {
-        "tipo": "Config_Sim",
+        "Modulo": "Config_Sim",
         "Config":{
             "h":    0.001,
             "kh":   4,
             "metodo":   "EulerProgresivo",
             "bitacora": [
                 {
-                    "id": "Motor_CD_1",
+                    "ID": "Motor_CD_1",
                     "vars": [
                         "ia", 
                         "w",
